@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="left-box">   
+    <div [class.error]="errorMessage1 !== ''">
+      <input [(ngModel)]="titleText" [ngClass]="{'error-border': errorMessage1 !== ''}" (input)="processInputTitle($event)" type="text" placeholder="Заглавие на бележката">
+      <span *ngIf="errorMessage1 !== ''" class="error-message">{{ errorMessage1 }}</span>
+    </div>
+    <div [class.error]="errorMessage2 !== ''">
+      <input [(ngModel)]="descText" [ngClass]="{'error-border': errorMessage2 !== ''}" (input)="processInputNote($event)" type="text" placeholder="Съдържание на бележката">   
+      <span *ngIf="errorMessage2 !== ''" class="error-message">{{ errorMessage2 }}</span>
+    </div>
+    <div>
+      <button [ngClass]="{'error-button': errorMessage1 !== '' || errorMessage2 !== ''}" (click)="saveNote()">Съхрани бележката</button>
+    </div>
+  </div>
+  <div class="right-box">
+    <div class="notes" *ngIf="notes.length > 0">
+      <h2>Бележки</h2>
+      <ul>
+        <li *ngFor="let note of notes" (click)="selectNote(note)">
+          <h3>{{ note.title }}</h3>
+          <p>{{ note.content }}</p>
+        </li>
+        <button class="ed" *ngIf="selectedNote" (click)="editNote()">Редакция</button>
+        <button class="ed" *ngIf="selectedNote" (click)="deleteNote()">Изтрий</button>  
+      </ul>
+    </div>
+  </div>
+</div>
+<router-outlet />
