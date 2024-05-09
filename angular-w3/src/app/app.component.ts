@@ -23,6 +23,7 @@ export class AppComponent {
   errorMessage2: string = '';
   titleText = '';
   descText = '';
+  clickedItems: boolean[] = [];
 
   processInputTitle(event: any) 
   {
@@ -76,6 +77,7 @@ export class AppComponent {
         this.errorMessage2 = 'Съдържанието трябва да съдържа поне 7 символа.';
       }
     }
+    this.clickedItems.fill(false);
   }
 
   editNote() 
@@ -102,13 +104,15 @@ export class AppComponent {
         this.resetTempData();
       }
     }
+    this.clickedItems.fill(false);
   }
-
-  selectNote(note: Note) 
+  selectNote(note: Note, index: number) 
   {
     this.tempTitle = note.title;
     this.tempContent = note.content;
     this.selectedNote = note;
+    this.clickedItems.fill(false);
+    this.clickedItems[index] = true;
   }
 }
 

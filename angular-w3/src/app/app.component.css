@@ -44,6 +44,10 @@ li {
 li input, button{ 
   border-radius: 25px;
 }
+li.selected {
+  background-color: white;
+  border: 2px dashed green;
+}
 .left-box input, .left-box button {
   display: block; 
   margin-bottom: 10px; 

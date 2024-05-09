@@ -16,7 +16,8 @@
     <div class="notes" *ngIf="notes.length > 0">
       <h2>Бележки</h2>
       <ul>
-        <li *ngFor="let note of notes" (click)="selectNote(note)">
+        <li *ngFor="let note of notes; let i = index" [ngClass]="{'selected': clickedItems[i]}" 
+        (click)="selectNote(note, i)">
           <h3>{{ note.title }}</h3>
           <p>{{ note.content }}</p>
         </li>
